@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JsonRevert.WebAPI.BusinessLogic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,8 @@ namespace JsonRevert.WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "JsonRevert API", Version = "v1" });
             });
+
+            services.AddTransient<IJsonReverter, JsonReverter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
