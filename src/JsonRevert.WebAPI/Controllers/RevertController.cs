@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JsonRevert.WebAPI.BusinessLogic;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace JsonRevert.WebAPI.Controllers
 {
@@ -6,10 +8,19 @@ namespace JsonRevert.WebAPI.Controllers
     [ApiController]
     public class RevertController : ControllerBase
     {
+        private readonly IJsonReverter _jsonReverter;
+        
+        public RevertController(IJsonReverter jsonReverter)
+        {
+            _jsonReverter = jsonReverter;
+        }
+        
        // POST api/revert
         [HttpPost]
-        public void Post([FromBody] string json)
+        public IActionResult Post([FromBody] string json)
         {
+            var result = _jsonReverter.RevertJson(json);
+            return Ok(result);
         }
     }
 }
