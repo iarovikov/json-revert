@@ -7,7 +7,13 @@ namespace JsonRevert.UnitTests
     public class JsonReverterTests
     {
         [Theory]
-        [InlineData("{A:1, B:1, C:1, D:1, E:1}", "{E:1, D:1, C:1, B:1, A:1}")]
+        [InlineData(@"{A:1, B:1, C:1, D:1, E:1}", @"{
+  E: 1,
+  D: 1,
+  C: 1,
+  B: 1,
+  A: 1
+}")]
         public void ShouldRevertInputJson(string input, string expected)
         {
             // Arrange
